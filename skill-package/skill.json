@@ -9,14 +9,14 @@
       "isAvailableWorldwide": true,
       "locales": {
         "de-DE": {
-          "description": "Mathematik Trainer mit vielen Übungen",
+          "description": "Mathetrainer mit vielen Übungen",
           "examplePhrases": [
-            "Alexa öffne mathe trainer",
-            "kopfrechnen"
+            "Alexa öffne mathetrainer",
+            "Alexa starte mathetrainer"
           ],
           "keywords": [],
-          "name": "Mathe Trainer",
-          "summary": "Mathematik Trainer"
+          "name": "Mathetrainer",
+          "summary": "Mathetrainer"
         }
       },
       "testingInstructions": "Sample Testing Instructions."

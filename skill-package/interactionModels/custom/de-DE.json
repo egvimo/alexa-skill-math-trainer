@@ -1,8 +1,67 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "mathe trainer",
+      "invocationName": "mathetrainer",
       "intents": [
+        {
+          "name": "AnswerIntent",
+          "slots": [
+            {
+              "name": "answer",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "samples": [
+            "das Ergebnis ist {answer}",
+            "ist das Ergebnis {answer}",
+            "{answer} ist das Ergebnis",
+            "{answer}"
+          ]
+        },
+        {
+          "name": "DontKnowIntent",
+          "samples": [
+            "weiß ich nicht",
+            "weiß nicht",
+            "überspringen",
+            "das weiß ich nicht",
+            "wer weiß",
+            "keine Ahnung",
+            "weiter"
+          ]
+        },
+        {
+          "name": "ScoreIntent",
+          "samples": [
+            "wie ist mein Punktestand",
+            "wie viele Punkte habe ich",
+            "Punktestand",
+            "Punkte"
+          ]
+        },
+        {
+          "name": "DifficultyLevelIntent",
+          "slots": [
+            {
+              "name": "difficultyLevel",
+              "type": "DIFFICULTY_LEVEL"
+            },
+            {
+              "name": "upperLimit",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "samples": [
+            "setze den Schwierigkeitsgrad auf {difficultyLevel}",
+            "setze den Schwierigkeitsgrad auf {difficultyLevel} mit Zahlen bis {upperLimit}",
+            "setze die Schwierigkeit auf {difficultyLevel}",
+            "setze die Schwierigkeit auf {difficultyLevel} mit Zahlen bis {upperLimit}",
+            "Schwierigkeitsgrad {difficultyLevel}",
+            "Schwierigkeitsgrad {difficultyLevel} und Zahlen {upperLimit}",
+            "Schwierigkeit {difficultyLevel}",
+            "Schwierigkeit {difficultyLevel} und Zahlen {upperLimit}"
+          ]
+        },
         {
           "name": "AMAZON.CancelIntent",
           "samples": []
@@ -16,14 +75,6 @@
           "samples": []
         },
         {
-          "name": "HelloWorldIntent",
-          "slots": [],
-          "samples": [
-            "zwei plus zwei ist vier",
-            "mathe macht spaß"
-          ]
-        },
-        {
           "name": "AMAZON.NavigateHomeIntent",
           "samples": []
         },
@@ -32,7 +83,48 @@
           "samples": []
         }
       ],
-      "types": []
+      "types": [
+        {
+          "name": "DIFFICULTY_LEVEL",
+          "values": [
+            {
+              "id": "VERY_EASY",
+              "name": {
+                "value": "sehr leicht",
+                "synonyms": []
+              }
+            },
+            {
+              "id": "EASY",
+              "name": {
+                "value": "leicht",
+                "synonyms": []
+              }
+            },
+            {
+              "id": "MEDIUM",
+              "name": {
+                "value": "mittel",
+                "synonyms": []
+              }
+            },
+            {
+              "id": "DIFFICULT",
+              "name": {
+                "value": "schwer",
+                "synonyms": []
+              }
+            },
+            {
+              "id": "VERY_DIFFICULT",
+              "name": {
+                "value": "sehr schwer",
+                "synonyms": []
+              }
+            }
+          ]
+        }
+      ]
     }
   },
   "version": "1"
