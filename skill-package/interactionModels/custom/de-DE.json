@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "change me",
+      "invocationName": "mathe trainer",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
@@ -19,10 +19,8 @@
           "name": "HelloWorldIntent",
           "slots": [],
           "samples": [
-            "hallo",
-            "wie geht\u0027s dir",
-            "sag hallo welt",
-            "sag hallo"
+            "zwei plus zwei ist vier",
+            "mathe macht spaß"
           ]
         },
         {

@@ -1,13 +1,13 @@
 {
-  "name": "hello-world",
-  "version": "1.2.0",
-  "description": "alexa utility for quickly building skills",
+  "name": "math-trainer",
+  "version": "0.1.0",
+  "description": "math trainer alexa skill",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Amazon Alexa",
-  "license": "Apache License",
+  "author": "egvimo",
+  "license": "AGPL-3.0-or-later",
   "dependencies": {
     "ask-sdk-core": "^2.7.0",
     "ask-sdk-model": "^1.19.0",
