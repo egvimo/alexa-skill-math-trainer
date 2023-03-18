@@ -1,3 +1,4 @@
-lambda/node_modules
 .ask/
+lambda/node_modules
+lambda/dist
 ask-resources.json

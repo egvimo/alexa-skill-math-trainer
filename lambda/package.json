@@ -1,18 +1,24 @@
 {
   "name": "math-trainer",
-  "version": "0.1.0",
+  "version": "0.1.8",
   "description": "math trainer alexa skill",
   "main": "index.js",
   "scripts": {
+    "clean": "npx rimraf ./dist",
+    "postinstall": "npm run clean && npm run build",
+    "build": "npx tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "egvimo",
   "license": "AGPL-3.0-or-later",
   "dependencies": {
-    "ask-sdk-core": "^2.7.0",
-    "ask-sdk-model": "^1.19.0",
-    "aws-sdk": "^2.326.0",
-    "i18next": "^22.4.11",
-    "i18next-sprintf-postprocessor": "^0.2.2"
+    "@types/i18next-sprintf-postprocessor": "^0.2.0",
+    "ask-sdk-core": "^2.12.1",
+    "ask-sdk-model": "^1.58.0",
+    "aws-sdk": "^2.1338.0",
+    "i18next": "^22.4.12",
+    "i18next-sprintf-postprocessor": "^0.2.2",
+    "rimraf": "^3.0.2",
+    "typescript": "^5.0.2"
   }
 }

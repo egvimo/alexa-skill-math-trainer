@@ -1,21 +1,22 @@
-// @ts-check
+import { DifficultyLevel, Operator } from "../lib/model";
 
-module.exports = {
+export const de = {
   translation: {
     GAME_NAME: "Mathetrainer",
     WELCOME_MESSAGE:
       '<say-as interpret-as="interjection">Willkommen</say-as> bei %s. ',
     NEW_GAME_MESSAGE:
-      "Ich stelle dir Rechenaufgaben und du versuchst, so viele wie möglich richtig zu beantworten. Fangen wir an! ",
-    DIFFICULTY_LEVEL_VERY_EASY: "sehr leicht",
-    DIFFICULTY_LEVEL_EASY: "leicht",
-    DIFFICULTY_LEVEL_MEDIUM: "mittel",
-    DIFFICULTY_LEVEL_DIFFICULT: "schwer",
-    DIFFICULTY_LEVEL_VERY_DIFFICULT: "sehr schwer",
-    OPERATOR_ADDITION: "plus",
-    OPERATOR_SUBTRACTION: "minus",
-    OPERATOR_MULTIPLICATION: "mal",
-    OPERATOR_DIVISION: "geteilt durch",
+      "Wähle aus fünf Schwierigkeitsstufen zwischen sehr leicht und sehr schwer. ",
+    [DifficultyLevel.VeryEasy]: "sehr leicht",
+    [DifficultyLevel.Easy]: "leicht",
+    [DifficultyLevel.Medium]: "mittel",
+    [DifficultyLevel.Difficult]: "schwer",
+    [DifficultyLevel.VeryDifficult]: "sehr schwer",
+    [Operator.Addition]: "plus",
+    [Operator.Subtraction]: "minus",
+    [Operator.Multiplication]: "mal",
+    [Operator.Division]: "geteilt durch",
+    START_MESSAGE: "Legen wir los! ",
     QUESTION_MESSAGE: "Wie viel ist %s %s %s?",
     ANSWER_CORRECT_MESSAGE: [
       '<say-as interpret-as="interjection">Japp</say-as>! ',
