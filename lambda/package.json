@@ -18,7 +18,7 @@
     "aws-sdk": "^2.1338.0",
     "i18next": "^22.4.12",
     "i18next-sprintf-postprocessor": "^0.2.2",
-    "rimraf": "^3.0.2",
+    "rimraf": "^5.0.0",
     "typescript": "^5.0.2"
   }
 }
