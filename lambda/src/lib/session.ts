@@ -1,5 +1,5 @@
 import { HandlerInput } from "ask-sdk-core";
-import { Difficulty, Exercise } from "./model";
+import { Exercise, Operation } from "./model";
 
 export class Session {
   private attributesManager;
@@ -19,13 +19,13 @@ export class Session {
     this.attributesManager.setSessionAttributes(this.sessionAttributes);
   }
 
-  getDifficulty(): Difficulty {
-    return this.sessionAttributes.difficulty;
+  getOperation(): Operation {
+    return this.sessionAttributes.operation;
   }
 
-  setDifficulty(difficulty: Difficulty) {
+  setOperation(operation: Operation) {
     Object.assign(this.sessionAttributes, {
-      difficulty: difficulty,
+      operation: operation,
     });
 
     this.attributesManager.setSessionAttributes(this.sessionAttributes);

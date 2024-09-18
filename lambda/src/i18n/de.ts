@@ -1,4 +1,4 @@
-import { DifficultyLevel, Operator } from "../lib/model";
+import { Operator } from "../lib/model";
 
 export const de = {
   translation: {
@@ -6,12 +6,7 @@ export const de = {
     WELCOME_MESSAGE:
       '<say-as interpret-as="interjection">Willkommen</say-as> bei %s. ',
     NEW_GAME_MESSAGE:
-      "Wähle aus fünf Schwierigkeitsstufen zwischen sehr leicht und sehr schwer. ",
-    [DifficultyLevel.VeryEasy]: "sehr leicht",
-    [DifficultyLevel.Easy]: "leicht",
-    [DifficultyLevel.Medium]: "mittel",
-    [DifficultyLevel.Difficult]: "schwer",
-    [DifficultyLevel.VeryDifficult]: "sehr schwer",
+      "Wähle die Rechenart, die du üben möchtest. Sage dazu: Rechenart plus, minus, mal oder geteilt durch. ",
     [Operator.Addition]: "plus",
     [Operator.Subtraction]: "minus",
     [Operator.Multiplication]: "mal",

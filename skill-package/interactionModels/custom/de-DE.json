@@ -40,26 +40,19 @@
           ]
         },
         {
-          "name": "DifficultyLevelIntent",
+          "name": "ArithmeticOperationIntent",
           "slots": [
             {
-              "name": "difficultyLevel",
-              "type": "DIFFICULTY_LEVEL"
-            },
-            {
-              "name": "upperLimit",
-              "type": "AMAZON.NUMBER"
+              "name": "arithmeticOperation",
+              "type": "ARITHMETIC_OPERATION"
             }
           ],
           "samples": [
-            "setze den Schwierigkeitsgrad auf {difficultyLevel}",
-            "setze den Schwierigkeitsgrad auf {difficultyLevel} mit Zahlen bis {upperLimit}",
-            "setze die Schwierigkeit auf {difficultyLevel}",
-            "setze die Schwierigkeit auf {difficultyLevel} mit Zahlen bis {upperLimit}",
-            "Schwierigkeitsgrad {difficultyLevel}",
-            "Schwierigkeitsgrad {difficultyLevel} und Zahlen {upperLimit}",
-            "Schwierigkeit {difficultyLevel}",
-            "Schwierigkeit {difficultyLevel} und Zahlen {upperLimit}"
+            "setze den Rechentyp auf {arithmeticOperation}",
+            "setze die Rechenart auf {arithmeticOperation}",
+            "Rechenart {arithmeticOperation}",
+            "Rechentyp {arithmeticOperation}",
+            "{arithmeticOperation}"
           ]
         },
         {
@@ -85,41 +78,44 @@
       ],
       "types": [
         {
-          "name": "DIFFICULTY_LEVEL",
+          "name": "ARITHMETIC_OPERATION",
           "values": [
             {
-              "id": "VERY_EASY",
+              "id": "ADDITION",
               "name": {
-                "value": "sehr leicht",
-                "synonyms": []
+                "value": "Addition",
+                "synonyms": [
+                  "plus"
+                ]
               }
             },
             {
-              "id": "EASY",
+              "id": "SUBTRACTION",
               "name": {
-                "value": "leicht",
-                "synonyms": []
+                "value": "subtraktion",
+                "synonyms": [
+                  "minus"
+                ]
               }
             },
             {
-              "id": "MEDIUM",
+              "id": "MULTIPLICATION",
               "name": {
-                "value": "mittel",
-                "synonyms": []
+                "value": "multiplikation",
+                "synonyms": [
+                  "mal"
+                ]
               }
             },
             {
-              "id": "DIFFICULT",
+              "id": "DIVISION",
               "name": {
-                "value": "schwer",
-                "synonyms": []
-              }
-            },
-            {
-              "id": "VERY_DIFFICULT",
-              "name": {
-                "value": "sehr schwer",
-                "synonyms": []
+                "value": "division",
+                "synonyms": [
+                  "teilen",
+                  "geteilt",
+                  "geteilt durch"
+                ]
               }
             }
           ]

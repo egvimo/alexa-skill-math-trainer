@@ -1,7 +1,6 @@
 import { HandlerInput } from "ask-sdk-core";
 import { Response } from "ask-sdk-model";
-import { DifficultyLevels } from "./lib/constants";
-import { Difficulty, DifficultyLevel, Exercise, Operator } from "./lib/model";
+import { Exercise, Operation, Operator } from "./lib/model";
 import { Session } from "./lib/session";
 
 export class Game {
@@ -21,7 +20,7 @@ export class Game {
     );
     const reprompt = this.requestAttributes.t("NEW_GAME_MESSAGE");
 
-    this.session.init()
+    this.session.init();
 
     return this.createResponse(speechOutput, reprompt);
   }
@@ -65,34 +64,24 @@ export class Game {
     );
   }
 
-  handleDifficultyLevel(
-    difficultyLevelSlotValue: string,
-    upperLimitSlotValue?: string
-  ): Response {
-    let difficulty: Difficulty | undefined = undefined;
-    switch (difficultyLevelSlotValue) {
-      case this.requestAttributes.t(DifficultyLevel.VeryEasy):
-        difficulty = DifficultyLevels.VERY_EASY;
+  handleArithmeticOperation(arithmeticOperationSlotValue: string): Response {
+    let operation: Operation | undefined = undefined;
+    switch (arithmeticOperationSlotValue) {
+      case this.requestAttributes.t(Operation.Addition):
+        operation = Operation.Addition;
         break;
-      case this.requestAttributes.t(DifficultyLevel.Easy):
-        difficulty = DifficultyLevels.EASY;
+      case this.requestAttributes.t(Operation.Subtraction):
+        operation = Operation.Subtraction;
         break;
-      case this.requestAttributes.t(DifficultyLevel.Medium):
-        difficulty = DifficultyLevels.MEDIUM;
+      case this.requestAttributes.t(Operation.Multiplication):
+        operation = Operation.Multiplication;
         break;
-      case this.requestAttributes.t(DifficultyLevel.Difficult):
-        difficulty = DifficultyLevels.DIFFICULT;
-        break;
-      case this.requestAttributes.t(DifficultyLevel.VeryDifficult):
-        difficulty = DifficultyLevels.VERY_DIFFICULT;
+      case this.requestAttributes.t(Operation.Division):
+        operation = Operation.Division;
         break;
     }
 
-    if (difficulty && Number.isInteger(upperLimitSlotValue)) {
-      difficulty.upperLimit = parseInt(upperLimitSlotValue!, 10);
-    }
-
-    this.session.setDifficulty(difficulty!);
+    this.session.setOperation(operation!);
 
     const exercise = this.createExercise();
     this.session.setExercise(exercise);
@@ -115,71 +104,45 @@ export class Game {
   }
 
   private createExercise(): Exercise {
-    const difficulty = this.session.getDifficulty();
+    const operation = this.session.getOperation();
 
     const exercise: Exercise = {} as Exercise;
+    const upperLimit = 100;
 
-    exercise.operator =
-      difficulty.operators[
-        Math.floor(Math.random() * difficulty.operators.length)
-      ];
-
-    switch (exercise.operator) {
-      case Operator.Addition:
-        exercise.leftOperand = Math.floor(
-          Math.random() * (difficulty.upperLimit + 1)
-        );
+    switch (operation) {
+      case Operation.Addition:
+        exercise.operator = Operator.Addition;
+        exercise.leftOperand = Math.floor(Math.random() * (upperLimit + 1));
         exercise.rightOperand = Math.floor(
-          Math.random() * (difficulty.upperLimit + 1 - exercise.leftOperand)
+          Math.random() * (upperLimit + 1 - exercise.leftOperand)
         );
         exercise.result = exercise.leftOperand + exercise.rightOperand;
         break;
-      case Operator.Subtraction:
-        exercise.leftOperand = Math.floor(
-          Math.random() * (difficulty.upperLimit + 1)
-        );
+      case Operation.Subtraction:
+        exercise.operator = Operator.Subtraction;
+        exercise.leftOperand = Math.floor(Math.random() * (upperLimit + 1));
         exercise.rightOperand = Math.floor(
           Math.random() * (exercise.leftOperand + 1)
         );
         exercise.result = exercise.leftOperand - exercise.rightOperand;
         break;
-      case Operator.Multiplication:
-        if (difficulty.level === DifficultyLevel.Medium) {
-          exercise.leftOperand = Math.floor(
-            Math.random() * (difficulty.upperLimit / 10 + 1)
-          );
-          exercise.rightOperand = Math.floor(
-            Math.random() * (difficulty.upperLimit / 10 + 1)
-          );
-        } else {
-          exercise.leftOperand = Math.floor(
-            Math.random() * (difficulty.upperLimit / 2 + 1)
-          );
-          exercise.rightOperand = Math.floor(
-            Math.random() *
-              (Math.floor(difficulty.upperLimit / exercise.leftOperand) + 1)
-          );
-        }
+      case Operation.Multiplication:
+        exercise.operator = Operator.Multiplication;
+        exercise.leftOperand = Math.floor(
+          Math.random() * (upperLimit / 10 + 1)
+        );
+        exercise.rightOperand = Math.floor(
+          Math.random() * (upperLimit / 10 + 1)
+        );
         exercise.result = exercise.leftOperand * exercise.rightOperand;
         break;
-      case Operator.Division:
-        if (difficulty.level === DifficultyLevel.Difficult) {
-          exercise.result = Math.floor(
-            Math.random() * (difficulty.upperLimit / 10 + 1)
-          );
-          exercise.rightOperand = Math.floor(
-            Math.random() * (difficulty.upperLimit / 10 + 1)
-          );
-        } else {
-          exercise.result = Math.floor(
-            Math.random() * (difficulty.upperLimit / 2 + 1)
-          );
-          exercise.rightOperand = Math.floor(
-            Math.random() *
-              (Math.floor(difficulty.upperLimit / exercise.leftOperand) + 1)
-          );
-        }
-        exercise.leftOperand = exercise.leftOperand * exercise.rightOperand;
+      case Operation.Division:
+        exercise.operator = Operator.Division;
+        exercise.result = Math.floor(Math.random() * (upperLimit / 10 + 1));
+        exercise.rightOperand = Math.floor(
+          Math.random() * (upperLimit / 10 + 1)
+        );
+        exercise.leftOperand = exercise.result * exercise.rightOperand;
         break;
     }
 

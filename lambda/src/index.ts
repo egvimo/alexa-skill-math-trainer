@@ -58,23 +58,22 @@ const DontKnowIntentHandler: RequestHandler = {
   },
 };
 
-const DifficultyLevelIntentHandler: RequestHandler = {
+const ArithmeticOperationIntentHandler: RequestHandler = {
   canHandle(handlerInput: HandlerInput): boolean {
     const request = handlerInput.requestEnvelope.request;
     return (
       request.type === "IntentRequest" &&
-      request.intent.name === "DifficultyLevelIntent"
+      request.intent.name === "ArithmeticOperationIntent"
     );
   },
   handle(handlerInput: HandlerInput): Response {
-    const difficultyLevel = getSlotValue(
+    const arithmeticOperation = getSlotValue(
       handlerInput.requestEnvelope,
-      "difficultyLevel"
+      "arithmeticOperation"
     );
-    const upperLimit = getSlotValue(handlerInput.requestEnvelope, "upperLimit");
     const game = new Game(handlerInput);
 
-    return game.handleDifficultyLevel(difficultyLevel, upperLimit);
+    return game.handleArithmeticOperation(arithmeticOperation);
   },
 };
 
@@ -205,7 +204,7 @@ export const handler = SkillBuilders.custom()
     LaunchRequestHandler,
     AnswerIntentHandler,
     DontKnowIntentHandler,
-    DifficultyLevelIntentHandler,
+    ArithmeticOperationIntentHandler,
     ScoreIntentHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
