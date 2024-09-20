@@ -1,8 +1,11 @@
 {
   "name": "math-trainer",
-  "version": "0.1.8",
+  "version": "0.1.10",
   "description": "math trainer alexa skill",
   "main": "index.js",
+  "engines" : {
+    "node" : ">=16.0.0"
+  },
   "scripts": {
     "clean": "npx rimraf ./dist",
     "postinstall": "npm run clean && npm run build",
